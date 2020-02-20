@@ -64,7 +64,14 @@ public boolean isValid(int r, int c)
 public int countMines(int row, int col)
 {
     int numMines = 0;
-    //your code here
+
+    for(int i = row - 1; i <= row + 1; i++){
+        for(int j = col - 1; j <= col + 1; j++){
+            if(isValid(i, j) && mines.contains(new MSButton(i, j))){
+                numMines++;
+            }
+        }
+    }
     return numMines;
 }
 public class MSButton
