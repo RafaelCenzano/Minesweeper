@@ -110,7 +110,7 @@ public class MSButton
             displayLosingMessage();
         }else if(countMines(myRow, myCol) > 0){
             setLabel(countMines(myRow, myCol));
-        }else{
+        }else{/*
             if(isValid(myRow - 1, myCol - 1)){
                 buttons[myRow - 1][myCol - 1].mousePressed();
             }
@@ -137,6 +137,14 @@ public class MSButton
             }
             if(isValid(myRow + 1, myCol + 1)){
                 buttons[myRow + 1][myCol + 1].mousePressed();
+            }
+            */
+            for(int i = -1; i <= 1; i++){
+                for(int j = -1; j <= 1; j++){
+                    if(isValid(myRow + i, myCol + j)){
+                        buttons[myRow + i][myCol + j].mousePressed();
+                    }
+                }
             }
         }
     }
