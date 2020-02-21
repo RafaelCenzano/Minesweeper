@@ -73,7 +73,7 @@ public void displayLosingMessage()
     buttons[0][4].setLabel("L");
     buttons[0][5].setLabel("O");
     buttons[0][6].setLabel("S");
-    buttons[0][7].setLabel("T");
+    buttons[0][7].setLabel("E");
 }
 public void displayWinningMessage()
 {
@@ -83,7 +83,7 @@ public void displayWinningMessage()
     buttons[0][2].setLabel("U");
     buttons[0][3].setLabel(" ");
     buttons[0][4].setLabel("W");
-    buttons[0][5].setLabel("O");
+    buttons[0][5].setLabel("I");
     buttons[0][6].setLabel("N");
 }
 public void gameOver() {
