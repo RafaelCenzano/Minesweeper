@@ -47,7 +47,7 @@ public void setMines(int r, int c)
     for(int i = 0; i < MINE_COUNT; i++){
         int row = (int)(Math.random()*NUM_ROWS);
         int col = (int)(Math.random()*NUM_COLS);
-        if(!mines.contains(buttons[row][col]) && row != r && col != c){
+        if(!mines.contains(buttons[row][col])){
             mines.add(buttons[row][col]);
         }
     }
@@ -140,6 +140,14 @@ public class MSButton
                 mines.remove(i);
             }
             setMines(myRow, myCol);
+        }
+        if(firstClick && countMines(myRow, myCol) > 0){
+            while (countMines(myRow, myCol) > 0){
+                for(int i = mines.size() - 1; i >= 0; i--){
+                    mines.remove(i);
+                }
+                setMines(myRow, myCol);
+            }
         }
         if(game && clickable){
             firstClick = false;
