@@ -4,6 +4,7 @@ public final static int NUM_COLS = 20;
 public final static int NUM_ROWS = 20;
 public final static int MINE_COUNT = 60;
 public boolean firstClick;
+public int minedCount;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines; //ArrayList of just the minesweeper buttons that are mined
 
@@ -25,6 +26,7 @@ void setup ()
     }
 
     firstClick = true;
+    minedCount = 0;
 
     mines = new ArrayList <MSButton>();
     
@@ -59,16 +61,30 @@ public void draw ()
 }
 public boolean isWon()
 {
-    //your code here
-    return false;
+    return !(minedCount < ((NUM_ROWS * NUM_COLS) - MINE_COUNT));
 }
 public void displayLosingMessage()
 {
     gameOver();
+    buttons[0][0].setLabel("Y");
+    buttons[0][1].setLabel("O");
+    buttons[0][2].setLabel("U");
+    buttons[0][3].setLabel(" ");
+    buttons[0][4].setLabel("L");
+    buttons[0][5].setLabel("O");
+    buttons[0][6].setLabel("S");
+    buttons[0][7].setLabel("T");
 }
 public void displayWinningMessage()
 {
     gameOver();
+    buttons[0][0].setLabel("Y");
+    buttons[0][1].setLabel("O");
+    buttons[0][2].setLabel("U");
+    buttons[0][3].setLabel(" ");
+    buttons[0][4].setLabel("W");
+    buttons[0][5].setLabel("O");
+    buttons[0][6].setLabel("N");
 }
 public void gameOver() {
     for(int i = 0; i < NUM_ROWS; i++){
@@ -99,7 +115,7 @@ public class MSButton
 {
     private int myRow, myCol;
     private float x,y, width, height;
-    private boolean clicked, flagged, game;
+    private boolean clicked, flagged, game, clickable;
     private String myLabel;
     
     public MSButton (int row, int col)
@@ -112,7 +128,7 @@ public class MSButton
         y = myRow*height;
         myLabel = "";
         flagged = clicked = false;
-        game = true;
+        game = clickable = true;
         Interactive.add( this ); // register it with the manager
     }
 
@@ -125,7 +141,7 @@ public class MSButton
             }
             setMines(myRow, myCol);
         }
-        if(game){
+        if(game && clickable){
             firstClick = false;
             clicked = true;
             if(mouseButton == RIGHT){
@@ -138,8 +154,12 @@ public class MSButton
             }else if(mines.contains(this)){
                 displayLosingMessage();
             }else if(countMines(myRow, myCol) > 0){
+                clickable = false;
+                minedCount++;
                 setLabel(countMines(myRow, myCol));
             }else{
+                clickable = false;
+                minedCount++;
                 for(int i = -1; i <= 1; i++){
                     for(int j = -1; j <= 1; j++){
                         if(isValid(myRow + i, myCol + j) && buttons[myRow + i][myCol + j].checkClicked()){
