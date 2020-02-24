@@ -152,7 +152,7 @@ public class MSButton
         if(game && clickable){
             firstClick = false;
             clicked = true;
-            if(mouseButton == RIGHT){
+            if(keyPressed || mouseButton == RIGHT){
                 if(flagged){
                     flagged = false;
                     clicked = false;
