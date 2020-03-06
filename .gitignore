@@ -1,4 +1,6 @@
 # Gitignore for APCS Lowell repositories
 
+*.DS_Store
+
 # Ignore compiled processing class files
 build-tmp/
