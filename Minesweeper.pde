@@ -32,16 +32,7 @@ void setup ()
     
     setMines();
 }
-public void setMines()
-{
-    for(int i = 0; i < MINE_COUNT; i++){
-        int row = (int)(Math.random()*NUM_ROWS);
-        int col = (int)(Math.random()*NUM_COLS);
-        if(!mines.contains(buttons[row][col])){
-            mines.add(buttons[row][col]);
-        }
-    }
-}
+
 public void setMines(int r, int c)
 {
     for(int i = 0; i < MINE_COUNT; i++){
@@ -49,6 +40,8 @@ public void setMines(int r, int c)
         int col = (int)(Math.random()*NUM_COLS);
         if(!mines.contains(buttons[row][col])){
             mines.add(buttons[row][col]);
+        }else{
+            i--;
         }
     }
 }
