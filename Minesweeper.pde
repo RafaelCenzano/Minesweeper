@@ -45,7 +45,16 @@ public void setMines(int r, int c)
         }
     }
 }
-
+public void setMines()
+{
+    for(int i = 0; i < MINE_COUNT; i++){
+        int row = (int)(Math.random()*NUM_ROWS);
+        int col = (int)(Math.random()*NUM_COLS);
+        if(!mines.contains(buttons[row][col])){
+            mines.add(buttons[row][col]);
+        }
+    }
+}
 public void draw ()
 {
     background( 0 );
